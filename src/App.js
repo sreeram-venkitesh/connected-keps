@@ -8,30 +8,34 @@ function App() {
   const [kepJson, setKepJsons] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(
-        "https://storage.googleapis.com/k8s-keps/keps.json",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHTTPRequest",
-          },
-        }
-      );
+    // async function fetchData() {
+    //   const response = await fetch(
+    //     "https://storage.googleapis.com/k8s-keps/keps.json",
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "X-Requested-With": "XMLHTTPRequest",
+    //       },
+    //     }
+    //   );
 
-      console.log(response);
-      const body = await response.text();
-      const data = JSON.parse(body);
-      setKepData(data);
-    }
+    //   console.log(response);
+    //   const body = await response.text();
+    //   const data = JSON.parse(body);
+    //   setKepData(data);
+    // }
 
-    fetchData();
+    // fetchData();
+
+    fetch(`${process.env.PUBLIC_URL}/keps.json`)
+    .then((r) => r.json())
+    .then((r) => setKepData(r));
 
     fetch(`${process.env.PUBLIC_URL}/data.json`)
       .then((r) => r.json())
       .then((r) => setKepJsons(r));
-  }, []);
+  },[]);
 
   useEffect(() => {
     // const groups = [
