@@ -32,10 +32,34 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
+/* Loading spinner animations */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
 
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Loading overlay styles */
+.loading-overlay {
+  backdrop-filter: blur(2px);
+}
+
+.loading-spinner {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+}
